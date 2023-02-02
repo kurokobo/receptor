@@ -76,7 +76,7 @@ build-package:
 	@echo "Building and packaging binary for $(GOOS)/$(GOARCH) as dist/$(DIST).tar.gz" && \
 	mkdir -p dist/$(DIST) && \
 	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 go build -o dist/$(DIST)/$(BINNAME) $(DEBUGFLAGS) -ldflags "-X 'github.com/ansible/receptor/internal/version.Version=$(VERSION)'" $(TAGPARAM) ./cmd/receptor-cl && \
-	tar -C dist -zcf dist/$(DIST).tar.gz $(DIST)/$(BINNAME) && \
+	tar -C dist/$(DIST) -zcf dist/$(DIST).tar.gz $(BINNAME) && \
 	cd dist/ && sha256sum $(DIST).tar.gz >> checksums.txt
 
 RUNTEST ?=
